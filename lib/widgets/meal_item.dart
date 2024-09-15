@@ -6,6 +6,15 @@ class MealItem extends StatelessWidget {
   final Meal meal;
   @override
   Widget build(BuildContext context) {
-    return 
+    return Container(
+      padding: const EdgeInsets.all(16),
+      // decoration: BoxDecoration() ,
+      child: Text(
+        meal.title,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: Theme.of(context).colorScheme.onSecondary,
+            ),
+      ),
+    );
   }
 }
