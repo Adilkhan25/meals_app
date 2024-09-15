@@ -7,7 +7,7 @@ import 'package:transparent_image/transparent_image.dart';
 class MealItem extends StatelessWidget {
   const MealItem({super.key, required this.meal, required this.onSelectMeal});
   final Meal meal;
-  final void Function(M) onSelectMeal;
+  final void Function() onSelectMeal;
   String capitalizeFirstLetter(String input) {
     return input[0].toUpperCase() + input.substring(1);
   }

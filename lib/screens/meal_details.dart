@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   const MealDetailsScreen({
@@ -11,19 +10,74 @@ class MealDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(meal.title),
-      ),
-      body: Card(
-        child: Stack(
-          children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(meal.title),
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.network(
+                meal.imageUrl,
+                fit: BoxFit.cover,
+                height: 300,
+                width: double.infinity,
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+              Text(
+                'Ingredients',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              for (String ingradient in meal.ingredients) ...[
+                const SizedBox(
+                  height: 6,
+                ),
+                Text(
+                  ingradient,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                )
+              ],
+              const SizedBox(
+                height: 14,
+              ),
+              Text(
+                'Steps',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              for (String step in meal.steps) ...[
+                const SizedBox(
+                  height: 6,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 6, horizontal: 14),
+                  child: Text(
+                    step,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                  ),
+                )
+              ],
+            ],
+          ),
+        ));
   }
 }
